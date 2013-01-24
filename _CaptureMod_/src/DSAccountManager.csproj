@@ -1,0 +1,359 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{ED0BA34D-62CF-4767-8575-366EE6E267D2}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DAM</RootNamespace>
+    <AssemblyName>DSAccountManager</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkSubset>
+    </TargetFrameworkSubset>
+    <ApplicationIcon>103.ico</ApplicationIcon>
+    <ManifestCertificateThumbprint>7C1AC005020FDC467FB06DE206F577282D2D1140</ManifestCertificateThumbprint>
+    <ManifestKeyFile>Disco Account Manager_TemporaryKey.pfx</ManifestKeyFile>
+    <GenerateManifests>true</GenerateManifests>
+    <TargetZone>LocalIntranet</TargetZone>
+    <SignManifests>false</SignManifests>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+    <SignAssembly>false</SignAssembly>
+    <PublishUrl>..\release\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>false</MapFileExtensions>
+    <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
+    <ApplicationRevision>8</ApplicationRevision>
+    <ApplicationVersion>0.2.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>false</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data.SQLite, Version=1.0.65.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\bin\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="GameDataSet.cs">
+      <DependentUpon>GameDataSet.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GameDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GameDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="LogRecorderInterface.cs" />
+    <Compile Include="StatisticsGenerator.cs" />
+    <Compile Include="Tool UI\AboutWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tool UI\AboutWindow.Designer.cs">
+      <DependentUpon>AboutWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Player Edit UI\AddEquipmentWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Player Edit UI\AddEquipmentWindow.Designer.cs">
+      <DependentUpon>AddEquipmentWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BannedPlayers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BannedPlayers.Designer.cs">
+      <DependentUpon>BannedPlayers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Player Edit UI\ChangeLocationWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Player Edit UI\ChangeLocationWindow.Designer.cs">
+      <DependentUpon>ChangeLocationWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Player Edit UI\ChangeShipWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Player Edit UI\ChangeShipWindow.Designer.cs">
+      <DependentUpon>ChangeShipWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Player Edit UI\AddCargoWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Player Edit UI\AddCargoWindow.Designer.cs">
+      <DependentUpon>AddCargoWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess.cs" />
+    <Compile Include="AppSettings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>AppSettings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Tool UI\SearchForLoginIDWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tool UI\SearchForLoginIDWindow.Designer.cs">
+      <DependentUpon>SearchForLoginIDWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tool UI\DecodeAllFilesWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tool UI\DecodeAllFilesWindow.Designer.cs">
+      <DependentUpon>DecodeAllFilesWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tool UI\SearchForIPWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tool UI\SearchForIPWindow.Designer.cs">
+      <DependentUpon>SearchForIPWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tool UI\StatisticsWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tool UI\StatisticsWindow.Designer.cs">
+      <DependentUpon>StatisticsWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tool UI\IniFileWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tool UI\IniFileWindow.Designer.cs">
+      <DependentUpon>IniFileWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIDataSet.cs">
+      <DependentUpon>UIDataSet.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UIDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UIDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Util Functions\FLDataFileException.cs" />
+    <Compile Include="Util Functions\FLHookCommander.cs" />
+    <Compile Include="Util Functions\FLHookListener.cs" />
+    <Compile Include="Util Functions\UtfFile.cs" />
+    <Compile Include="CreateBanWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateBanWindow.Designer.cs">
+      <DependentUpon>CreateBanWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Util Functions\FLGameData.cs" />
+    <Compile Include="Util Functions\FLDataFile.cs" />
+    <Compile Include="DamDataSet.cs">
+      <DependentUpon>DamDataSet.xsd</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="DamDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DamDataSet.xsd</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="AppServiceInteface.cs" />
+    <Compile Include="Util Functions\FLUtility.cs" />
+    <Compile Include="Tool UI\HashcodeWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tool UI\HashcodeWindow.Designer.cs">
+      <DependentUpon>HashcodeWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainWindow.Designer.cs">
+      <DependentUpon>MainWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Tool UI\PropertiesWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tool UI\PropertiesWindow.Designer.cs">
+      <DependentUpon>PropertiesWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Tool UI\AboutWindow.resx">
+      <DependentUpon>AboutWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Player Edit UI\AddEquipmentWindow.resx">
+      <DependentUpon>AddEquipmentWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BannedPlayers.resx">
+      <DependentUpon>BannedPlayers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Player Edit UI\ChangeLocationWindow.resx">
+      <DependentUpon>ChangeLocationWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Player Edit UI\ChangeShipWindow.resx">
+      <DependentUpon>ChangeShipWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Player Edit UI\AddCargoWindow.resx">
+      <DependentUpon>AddCargoWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreateBanWindow.resx">
+      <DependentUpon>CreateBanWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tool UI\SearchForLoginIDWindow.resx">
+      <DependentUpon>SearchForLoginIDWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tool UI\DecodeAllFilesWindow.resx">
+      <DependentUpon>DecodeAllFilesWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tool UI\SearchForIPWindow.resx">
+      <DependentUpon>SearchForIPWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tool UI\StatisticsWindow.resx">
+      <DependentUpon>StatisticsWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tool UI\HashcodeWindow.resx">
+      <DependentUpon>HashcodeWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainWindow.resx">
+      <DependentUpon>MainWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tool UI\IniFileWindow.resx">
+      <DependentUpon>IniFileWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tool UI\PropertiesWindow.resx">
+      <DependentUpon>PropertiesWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="DamDataSet.xsc">
+      <DependentUpon>DamDataSet.xsd</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="DamDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DamDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="DamDataSet.xss">
+      <DependentUpon>DamDataSet.xsd</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="GameDataSet.xsc">
+      <DependentUpon>GameDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="GameDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GameDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="GameDataSet.xss">
+      <DependentUpon>GameDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\app.manifest" />
+    <None Include="AppSettings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>AppSettings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="UIDataSet.xsc">
+      <DependentUpon>UIDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="UIDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>UIDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="UIDataSet.xss">
+      <DependentUpon>UIDataSet.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="103.ico" />
+    <Content Include="Readme.txt" />
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

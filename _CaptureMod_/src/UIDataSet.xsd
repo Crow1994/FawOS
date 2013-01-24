@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="UIDataSet" targetNamespace="http://tempuri.org/UIDataSet.xsd" xmlns:mstns="http://tempuri.org/UIDataSet.xsd" xmlns="http://tempuri.org/UIDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="UIDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="UIDataSet" msprop:Generator_DataSetName="UIDataSet" msprop:EnableTableAdapterManager="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="PIEquipmentTable" msprop:Generator_UserTableName="PIEquipmentTable" msprop:Generator_RowDeletedName="PIEquipmentTableRowDeleted" msprop:Generator_RowChangedName="PIEquipmentTableRowChanged" msprop:Generator_RowClassName="PIEquipmentTableRow" msprop:Generator_RowChangingName="PIEquipmentTableRowChanging" msprop:Generator_RowEvArgName="PIEquipmentTableRowChangeEvent" msprop:Generator_RowEvHandlerName="PIEquipmentTableRowChangeEventHandler" msprop:Generator_TableClassName="PIEquipmentTableDataTable" msprop:Generator_TableVarName="tablePIEquipmentTable" msprop:Generator_RowDeletingName="PIEquipmentTableRowDeleting" msprop:Generator_TablePropName="PIEquipmentTable">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="itemHardpoint" msprop:Generator_UserColumnName="itemHardpoint" msprop:Generator_ColumnVarNameInTable="columnitemHardpoint" msprop:Generator_ColumnPropNameInRow="itemHardpoint" msprop:Generator_ColumnPropNameInTable="itemHardpointColumn" type="xs:string" />
+              <xs:element name="itemDescription" msprop:Generator_UserColumnName="itemDescription" msprop:Generator_ColumnVarNameInTable="columnitemDescription" msprop:Generator_ColumnPropNameInRow="itemDescription" msprop:Generator_ColumnPropNameInTable="itemDescriptionColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="itemHash" msprop:Generator_UserColumnName="itemHash" msprop:Generator_ColumnVarNameInTable="columnitemHash" msprop:Generator_ColumnPropNameInRow="itemHash" msprop:Generator_ColumnPropNameInTable="itemHashColumn" type="xs:long" minOccurs="0" />
+              <xs:element name="itemAllowedTypes" msprop:Generator_UserColumnName="itemAllowedTypes" msprop:Generator_ColumnVarNameInTable="columnitemAllowedTypes" msprop:Generator_ColumnPropNameInRow="itemAllowedTypes" msprop:Generator_ColumnPropNameInTable="itemAllowedTypesColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="itemGameDataType" msprop:Generator_UserColumnName="itemGameDataType" msprop:Generator_ColumnVarNameInTable="columnitemGameDataType" msprop:Generator_ColumnPropNameInRow="itemGameDataType" msprop:Generator_ColumnPropNameInTable="itemGameDataTypeColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="PIFactionTable" msprop:Generator_UserTableName="PIFactionTable" msprop:Generator_RowDeletedName="PIFactionTableRowDeleted" msprop:Generator_RowChangedName="PIFactionTableRowChanged" msprop:Generator_RowClassName="PIFactionTableRow" msprop:Generator_RowChangingName="PIFactionTableRowChanging" msprop:Generator_RowEvArgName="PIFactionTableRowChangeEvent" msprop:Generator_RowEvHandlerName="PIFactionTableRowChangeEventHandler" msprop:Generator_TableClassName="PIFactionTableDataTable" msprop:Generator_TableVarName="tablePIFactionTable" msprop:Generator_RowDeletingName="PIFactionTableRowDeleting" msprop:Generator_TablePropName="PIFactionTable">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="itemDescription" msprop:Generator_UserColumnName="itemDescription" msprop:Generator_ColumnVarNameInTable="columnitemDescription" msprop:Generator_ColumnPropNameInRow="itemDescription" msprop:Generator_ColumnPropNameInTable="itemDescriptionColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="itemNickname" msdata:Caption="itemCount" msprop:Generator_UserColumnName="itemNickname" msprop:Generator_ColumnVarNameInTable="columnitemNickname" msprop:Generator_ColumnPropNameInRow="itemNickname" msprop:Generator_ColumnPropNameInTable="itemNicknameColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="itemRep" msdata:Caption="itemHash" msprop:Generator_UserColumnName="itemRep" msprop:Generator_ColumnVarNameInTable="columnitemRep" msprop:Generator_ColumnPropNameInRow="itemRep" msprop:Generator_ColumnPropNameInTable="itemRepColumn" type="xs:float" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="PICargoTable" msprop:Generator_UserTableName="PICargoTable" msprop:Generator_RowDeletedName="PICargoTableRowDeleted" msprop:Generator_RowChangedName="PICargoTableRowChanged" msprop:Generator_RowClassName="PICargoTableRow" msprop:Generator_RowChangingName="PICargoTableRowChanging" msprop:Generator_RowEvArgName="PICargoTableRowChangeEvent" msprop:Generator_RowEvHandlerName="PICargoTableRowChangeEventHandler" msprop:Generator_TableClassName="PICargoTableDataTable" msprop:Generator_TableVarName="tablePICargoTable" msprop:Generator_RowDeletingName="PICargoTableRowDeleting" msprop:Generator_TablePropName="PICargoTable">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="itemDescription" msprop:Generator_UserColumnName="itemDescription" msprop:Generator_ColumnVarNameInTable="columnitemDescription" msprop:Generator_ColumnPropNameInRow="itemDescription" msprop:Generator_ColumnPropNameInTable="itemDescriptionColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="itemCount" msprop:Generator_UserColumnName="itemCount" msprop:Generator_ColumnVarNameInTable="columnitemCount" msprop:Generator_ColumnPropNameInRow="itemCount" msprop:Generator_ColumnPropNameInTable="itemCountColumn" type="xs:unsignedInt" minOccurs="0" />
+              <xs:element name="itemHash" msprop:Generator_UserColumnName="itemHash" msprop:Generator_ColumnVarNameInTable="columnitemHash" msprop:Generator_ColumnPropNameInRow="itemHash" msprop:Generator_ColumnPropNameInTable="itemHashColumn" type="xs:long" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="StatPlayer" msprop:Generator_UserTableName="StatPlayer" msprop:Generator_RowDeletedName="StatPlayerRowDeleted" msprop:Generator_RowChangedName="StatPlayerRowChanged" msprop:Generator_RowClassName="StatPlayerRow" msprop:Generator_RowChangingName="StatPlayerRowChanging" msprop:Generator_RowEvArgName="StatPlayerRowChangeEvent" msprop:Generator_RowEvHandlerName="StatPlayerRowChangeEventHandler" msprop:Generator_TableClassName="StatPlayerDataTable" msprop:Generator_TableVarName="tableStatPlayer" msprop:Generator_RowDeletingName="StatPlayerRowDeleting" msprop:Generator_TablePropName="StatPlayer">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Name" msprop:Generator_UserColumnName="Name" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInTable="NameColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="OnLineTime" msprop:Generator_UserColumnName="OnLineTime" msprop:Generator_ColumnPropNameInRow="OnLineTime" msprop:Generator_ColumnVarNameInTable="columnOnLineTime" msprop:Generator_ColumnPropNameInTable="OnLineTimeColumn" type="xs:duration" minOccurs="0" />
+              <xs:element name="Money" msprop:Generator_UserColumnName="Money" msprop:Generator_ColumnVarNameInTable="columnMoney" msprop:Generator_ColumnPropNameInRow="Money" msprop:Generator_ColumnPropNameInTable="MoneyColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Rank" msprop:Generator_UserColumnName="Rank" msprop:Generator_ColumnVarNameInTable="columnRank" msprop:Generator_ColumnPropNameInRow="Rank" msprop:Generator_ColumnPropNameInTable="RankColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="LastOnLine" msprop:Generator_UserColumnName="LastOnLine" msprop:Generator_ColumnVarNameInTable="columnLastOnLine" msprop:Generator_ColumnPropNameInRow="LastOnLine" msprop:Generator_ColumnPropNameInTable="LastOnLineColumn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="OnLineSecs" msprop:Generator_UserColumnName="OnLineSecs" msprop:Generator_ColumnPropNameInRow="OnLineSecs" msprop:Generator_ColumnVarNameInTable="columnOnLineSecs" msprop:Generator_ColumnPropNameInTable="OnLineSecsColumn" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
