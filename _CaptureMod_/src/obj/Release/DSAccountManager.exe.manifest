@@ -42,26 +42,31 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="DSAccountManager.exe" size="523776">
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="System.Data.SqlServerCe" version="3.5.1.0" publicKeyToken="89845DCD8080CC91" language="neutral" processorArchitecture="msil" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="DSAccountManager.exe" size="530432">
       <assemblyIdentity name="DSAccountManager" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>F7W0ktj6IiXXmEGR1lC/LrnV5w8=</dsig:DigestValue>
+        <dsig:DigestValue>lPuCwStVYp1/B7g0w48BJtO84gI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="System.Data.SQLite.dll" size="904704">
-      <assemblyIdentity name="System.Data.SQLite" version="1.0.66.0" publicKeyToken="DB937BC2D44FF139" language="neutral" processorArchitecture="x86" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="System.Data.SQLite.DLL" size="1102336">
+      <assemblyIdentity name="System.Data.SQLite" version="1.0.66.0" publicKeyToken="DB937BC2D44FF139" language="neutral" processorArchitecture="amd64" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>EFF0T2VKbSBZCXD5M14e8kbw+mc=</dsig:DigestValue>
+        <dsig:DigestValue>63MPRwzEb8CFabuZHxaDzzQmMGM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -74,13 +79,13 @@
       <dsig:DigestValue>J/aW1nJsaDAShP4ta9FWdD9ODZU=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="DSAccountManager.exe.config" size="5885">
+  <file name="DSAccountManager.exe.config" size="5999">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>vivfdSLL42+m2MisQxD+yS8mvvc=</dsig:DigestValue>
+      <dsig:DigestValue>0qg5BlyNWyubZjVSaJxoCUXkOLo=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Readme.txt" size="785">

@@ -4,14 +4,14 @@
   <description asmv2:publisher="DSAccountManager" asmv2:product="DSAccountManager" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <deployment install="true" />
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="DSAccountManager.exe.manifest" size="5026">
+    <dependentAssembly dependencyType="install" codebase="DSAccountManager.exe.manifest" size="5329">
       <assemblyIdentity name="DSAccountManager.exe" version="0.2.0.8" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>USH7aDeT6K6DONNhtHfTnQLypQ0=</dsig:DigestValue>
+        <dsig:DigestValue>WbEDEReVvWz6XWNGmf4tXAt6DVw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

@@ -60,6 +60,10 @@ namespace DAM
                 checkBoxBannedCharsInRed.Checked = AppSettings.Default.setDisplayBannedCharsRed;
 
                 LoadProcessorAffinity();
+                _loginIDs = LoadLoginIdSettings();
+
+                foreach (var file in _loginIDs.Keys)
+                    lbLoginFiles.Items.Add(file);
             }
         }
 
@@ -107,6 +111,7 @@ namespace DAM
                 AppSettings.Default.setDisplayBannedCharsRed = checkBoxBannedCharsInRed.Checked;
 
                 SaveProcessorAffinity();
+                SaveLoginIdSettings();
                 Program.ApplyProcessorAffinity();
 
                 AppSettings.Default.Save();
@@ -312,6 +317,142 @@ namespace DAM
             return items;
         }
 
+        #endregion
+
+        #region Login IDs
+        private Dictionary<string, List<KeyValuePair<string, string>>> _loginIDs;
+
+        #region Files
+        private void lbLoginFiles_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lbLoginFiles.SelectedIndices.Count == 1)
+            {
+                panelLoginValues.Enabled = true;
+                lbLoginValues.Items.Clear();
+                foreach (var kvp in _loginIDs[lbLoginFiles.SelectedItem.ToString()])
+                {
+                    lbLoginValues.Items.Add("[" + kvp.Key + "] " + kvp.Value);
+                }
+            }
+            else
+            {
+                panelLoginValues.Enabled = false;
+                lbLoginValues.Items.Clear();
+            }
+        }
+
+        private void btnLoginFilesAdd_Click(object sender, EventArgs e)
+        {
+            var name = txtLoginFilesName.Text.Trim();
+            if(_loginIDs.ContainsKey(name))
+                return;
+
+            lbLoginFiles.Items.Add(name);
+            _loginIDs[name] = new List<KeyValuePair<string, string>>();
+            lbLoginFiles.SelectedIndex = lbLoginFiles.Items.Count - 1;
+            txtLoginFilesName.Text = "";
+        }
+
+        private void btnLoginFilesDelete_Click(object sender, EventArgs e)
+        {
+            if (lbLoginFiles.SelectedIndices.Count != 0)
+            {
+                _loginIDs.Remove(lbLoginFiles.SelectedItem.ToString());
+                lbLoginFiles.Items.RemoveAt(lbLoginFiles.SelectedIndex);
+            }
+        }
+        #endregion
+
+        #region Values
+        private void btnLoginValuesAdd_Click(object sender, EventArgs e)
+        {
+            var section = txtLoginValuesSection.Text.Trim();
+            var name = txtLoginValuesName.Text.Trim();
+            var file = lbLoginFiles.SelectedItem.ToString();
+
+            foreach (var kvp in _loginIDs[file])
+            {
+                if(kvp.Key == section && kvp.Value == name)
+                    return;
+            }
+
+            lbLoginValues.Items.Add("[" + section + "] " + name);
+            _loginIDs[file].Add(new KeyValuePair<string, string>(section, name));
+            txtLoginValuesName.Text = "";
+        }
+
+        private void btnLoginValuesDelete_Click(object sender, EventArgs e)
+        {
+            if(lbLoginValues.SelectedIndices.Count != 0)
+            {
+                _loginIDs[lbLoginFiles.SelectedItem.ToString()].RemoveAt(lbLoginValues.SelectedIndex);
+                lbLoginValues.Items.RemoveAt(lbLoginValues.SelectedIndex);
+            }
+        }
+        #endregion
+
+        private void SaveLoginIdSettings()
+        {
+            var result = new StringBuilder();
+
+            foreach (var file in _loginIDs)
+            {
+                result.Append(file.Key);
+                result.Append(':');
+                foreach (var kvp in file.Value)
+                {
+                    result.Append(kvp.Key);
+                    result.Append("#");
+                    result.Append(kvp.Value);
+                    result.Append(";");
+                }
+                result.Remove(result.Length - 1, 1);
+                result.Append('|');
+            }
+            if (result.Length > 0)
+                result.Remove(result.Length - 1, 1);
+
+            AppSettings.Default.setLoginIDs = result.ToString();
+            FLUtility.LOGIN_ID_FILES = _loginIDs;
+        }
+
+        public static Dictionary<string, List<KeyValuePair<string, string>>> LoadLoginIdSettings()
+        {
+            var loginIDs = new Dictionary<string, List<KeyValuePair<string, string>>>();
+            var files = AppSettings.Default.setLoginIDs.Split('|');
+
+            // Format:
+
+            // Raw: flhookuser.ini:general#foo1;general#foo2|login.ini:#id1;#id2
+            //      file1:section1#value1;section2#value2|file2:section1#value1;section2#value2
+            // Resulting structure:
+            //      flhookuser.ini
+            //          [General] foo1
+            //          [General] foo2
+            //      login.ini
+            //          id1   // no section
+            //          id2   // no section
+
+            foreach (var rawFile in files)
+            {
+                if(rawFile.Length == 0)
+                    continue;
+
+                var parts = rawFile.Split(':');
+                var file = parts[0];
+                var values = parts[1].Split(';');
+
+                loginIDs[file] = new List<KeyValuePair<string, string>>();
+                foreach (var val in values)
+                {
+                    parts = val.Split('#');
+                    var kvp = new KeyValuePair<string, string>(parts[0], parts[1]);
+                    loginIDs[file].Add(kvp);
+                }
+            }
+
+            return loginIDs;
+        }
         #endregion
     }
 }

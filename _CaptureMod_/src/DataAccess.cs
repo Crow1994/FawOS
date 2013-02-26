@@ -532,7 +532,8 @@ namespace DAM
             {
                 if (i != 0)
                     query += " OR";
-                query += " LoginID = '" + loginIDs[i] + "'";
+                query += " LoginID =  '" + loginIDs[i] + "'";
+;
             }
             query += "";
 

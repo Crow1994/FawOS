@@ -33,6 +33,10 @@
             this.changeShipButton = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.lvCharLogins = new System.Windows.Forms.ListView();
+            this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
             this.buttonAddCompleteMap = new System.Windows.Forms.Button();
             this.buttonCheckFile = new System.Windows.Forms.Button();
             this.buttonResetLastOnline = new System.Windows.Forms.Button();
@@ -42,7 +46,6 @@
             this.label18 = new System.Windows.Forms.Label();
             this.kickPlayerButton = new System.Windows.Forms.Button();
             this.deletePlayerButton = new System.Windows.Forms.Button();
-            this.piIPAddresses = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.piPath = new System.Windows.Forms.TextBox();
             this.openDirButton = new System.Windows.Forms.Button();
@@ -183,6 +186,7 @@
             this.banSelectedButton = new System.Windows.Forms.Button();
             this.deleteSelectedButton = new System.Windows.Forms.Button();
             this.unbanSelectedButton = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -239,6 +243,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.lvCharLogins);
             this.tabPage1.Controls.Add(this.buttonAddCompleteMap);
             this.tabPage1.Controls.Add(this.buttonCheckFile);
             this.tabPage1.Controls.Add(this.buttonResetLastOnline);
@@ -249,7 +254,6 @@
             this.tabPage1.Controls.Add(this.label18);
             this.tabPage1.Controls.Add(this.kickPlayerButton);
             this.tabPage1.Controls.Add(this.deletePlayerButton);
-            this.tabPage1.Controls.Add(this.piIPAddresses);
             this.tabPage1.Controls.Add(this.label13);
             this.tabPage1.Controls.Add(this.piPath);
             this.tabPage1.Controls.Add(this.openDirButton);
@@ -285,6 +289,35 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Overview";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // lvCharLogins
+            // 
+            this.lvCharLogins.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3});
+            this.lvCharLogins.FullRowSelect = true;
+            this.lvCharLogins.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvCharLogins.Location = new System.Drawing.Point(81, 328);
+            this.lvCharLogins.MultiSelect = false;
+            this.lvCharLogins.Name = "lvCharLogins";
+            this.lvCharLogins.Size = new System.Drawing.Size(293, 124);
+            this.lvCharLogins.TabIndex = 58;
+            this.lvCharLogins.UseCompatibleStateImageBehavior = false;
+            this.lvCharLogins.View = System.Windows.Forms.View.Details;
+            this.lvCharLogins.KeyUp += new System.Windows.Forms.KeyEventHandler(this.lvCharLogins_KeyUp);
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Width = 33;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Width = 120;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Width = 300;
             // 
             // buttonAddCompleteMap
             // 
@@ -372,18 +405,6 @@
             this.deletePlayerButton.Text = "Delete Player";
             this.deletePlayerButton.UseVisualStyleBackColor = true;
             this.deletePlayerButton.Click += new System.EventHandler(this.deletePlayerButton_Click);
-            // 
-            // piIPAddresses
-            // 
-            this.piIPAddresses.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
-            this.piIPAddresses.Location = new System.Drawing.Point(81, 325);
-            this.piIPAddresses.Multiline = true;
-            this.piIPAddresses.Name = "piIPAddresses";
-            this.piIPAddresses.ReadOnly = true;
-            this.piIPAddresses.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.piIPAddresses.Size = new System.Drawing.Size(293, 127);
-            this.piIPAddresses.TabIndex = 45;
             // 
             // label13
             // 
@@ -1494,7 +1515,7 @@
             this.toolStripDBPending,
             this.toolStripStatusLabel1,
             this.toolStripHookState});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 528);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 533);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(960, 22);
             this.statusStrip1.TabIndex = 15;
@@ -1763,11 +1784,23 @@
             this.unbanSelectedButton.UseVisualStyleBackColor = true;
             this.unbanSelectedButton.Click += new System.EventHandler(this.unbanSelectedButton_Click);
             // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Location = new System.Drawing.Point(349, 445);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(110, 23);
+            this.button1.TabIndex = 24;
+            this.button1.Text = "Move all selected";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.buttonMoveAllSelected_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(960, 550);
+            this.ClientSize = new System.Drawing.Size(960, 555);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBoxFilter);
             this.Controls.Add(this.unbanSelectedButton);
             this.Controls.Add(this.deleteSelectedButton);
@@ -1781,8 +1814,8 @@
             this.MinimumSize = new System.Drawing.Size(968, 584);
             this.Name = "MainWindow";
             this.Text = "DS Account Manager";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindow_FormClosing);
             this.Load += new System.EventHandler(this.MainWindow_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindow_FormClosing);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
@@ -1947,7 +1980,6 @@
         private System.Windows.Forms.ToolStripMenuItem fLFileEditorToolStripMenuItem;
         private System.Windows.Forms.CheckBox checkBoxShowOriginalFile;
         private System.Windows.Forms.Button buttonAddCompleteMap;
-        private System.Windows.Forms.TextBox piIPAddresses;
         private System.Windows.Forms.Timer timerShutdown;
         private System.Windows.Forms.ToolStripMenuItem reloadGameDataToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem searchLoginIDToolStripMenuItem;
@@ -1973,6 +2005,11 @@
         private System.Windows.Forms.Button banSelectedButton;
         private System.Windows.Forms.Button deleteSelectedButton;
         private System.Windows.Forms.Button unbanSelectedButton;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ListView lvCharLogins;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
     }
 }
 

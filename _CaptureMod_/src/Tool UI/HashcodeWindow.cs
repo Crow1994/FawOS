@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using System.IO;
 
 namespace DAM
 {
@@ -85,6 +86,26 @@ namespace DAM
             expr += " OR (IDSInfo3 LIKE '%" + filterText + "%')";
             expr += " OR (ItemKeys LIKE '%" + filterText + "%')";
             hashListBindingSource.Filter = expr;
+        }
+
+        private void buttonExport_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog d = new SaveFileDialog())
+            {
+                if (d.ShowDialog() == DialogResult.OK)
+                {
+                    using (StreamWriter file = new StreamWriter(d.FileName))
+                    {
+                        foreach (DataGridViewRow row in dataGridView1.SelectedRows)
+                        {
+                            string name = (string)row.Cells[iDSNameDataGridViewTextBoxColumn.Index].Value;
+                            file.WriteLine(String.Format(";{0}", name));                       
+                            string nick = (string)row.Cells[itemNickNameDataGridViewTextBoxColumn.Index].Value;
+                            file.WriteLine(String.Format("{0}=", nick));
+                        }
+                    }
+                }
+            }
         }
     }
 }

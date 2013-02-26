@@ -14,12 +14,12 @@ namespace DAM
     public partial class ChangeLocationWindow : Form
     {
         AppServiceInterface appServices;
-        FLDataFile charFile;
+        List<FLDataFile> charFiles;
 
-        public ChangeLocationWindow(AppServiceInterface appServices, FLGameData gameData, FLDataFile charFile)
+        public ChangeLocationWindow(AppServiceInterface appServices, FLGameData gameData, List<FLDataFile> charFiles)
         {
             this.appServices = appServices;
-            this.charFile = charFile;
+            this.charFiles = charFiles;
 
             InitializeComponent();
             hashListBindingSource.DataSource = gameData.DataStore;
@@ -30,12 +30,12 @@ namespace DAM
         private void ChangeLocationWindow_Load(object sender, EventArgs e)
         {
             // Select the row that the player is currently at
-            if (charFile.SettingExists("Player", "base")
-                && charFile.SettingExists("Player", "last_base"))
+            if (charFiles.Count == 1 && charFiles[0].SettingExists("Player", "base")
+                    && charFiles[0].SettingExists("Player", "last_base"))
             {
                 checkBox2.Checked = false;
 
-                string currentBaseNick = charFile.GetSetting("Player", "last_base").Str(0);
+                string currentBaseNick = charFiles[0].GetSetting("Player", "last_base").Str(0);
                 foreach (DataGridViewRow row in dataGridViewBase.Rows)
                 {
                     GameDataSet.HashListRow dataRow = (GameDataSet.HashListRow)((DataRowView)row.DataBoundItem).Row;
@@ -48,12 +48,13 @@ namespace DAM
                 }
             }
 
-            if (charFile.SettingExists("Player", "system")
-                && charFile.SettingExists("Player", "pos"))
+
+            if (charFiles[0] != null && charFiles[0].SettingExists("Player", "system")
+                && charFiles[0].SettingExists("Player", "pos"))
             {
                 checkBox2.Checked = true;
 
-                string currentSystemNick = charFile.GetSetting("Player", "system").Str(0);
+                string currentSystemNick = charFiles[0].GetSetting("Player", "system").Str(0);
                 foreach (DataGridViewRow row in dataGridViewSystem.Rows)
                 {
                     GameDataSet.HashListRow dataRow = (GameDataSet.HashListRow)((DataRowView)row.DataBoundItem).Row;
@@ -65,9 +66,9 @@ namespace DAM
                     }
                 }
 
-                textBoxPosX.Text = charFile.GetSetting("Player", "pos").Str(0);
-                textBoxPosY.Text = charFile.GetSetting("Player", "pos").Str(1);
-                textBoxPosZ.Text = charFile.GetSetting("Player", "pos").Str(2);
+                textBoxPosX.Text = charFiles[0].GetSetting("Player", "pos").Str(0);
+                textBoxPosY.Text = charFiles[0].GetSetting("Player", "pos").Str(1);
+                textBoxPosZ.Text = charFiles[0].GetSetting("Player", "pos").Str(2);
             }
             else
             {
@@ -86,39 +87,41 @@ namespace DAM
         {
             if (dataGridViewBase.SelectedRows.Count != 1)
                 return;
-
-            foreach (DataGridViewRow row in dataGridViewBase.SelectedRows)
+            foreach (FLDataFile charFile in charFiles)
             {
-                GameDataSet.HashListRow dataRow = (GameDataSet.HashListRow)((DataRowView)row.DataBoundItem).Row;
-                string baseNick = dataRow.ItemNickName;
-                string systemNick = baseNick.Substring(0, 4);
-
-                charFile.AddSetting("Player", "base", new object[] { baseNick });
-                charFile.AddSetting("Player", "last_base", new object[] { baseNick });
-                charFile.AddSetting("Player", "system", new object[] { systemNick });
-                break;
-            }
-
-            if (checkBox2.Checked)
-            {
-                foreach (DataGridViewRow row in dataGridViewSystem.SelectedRows)
+                foreach (DataGridViewRow row in dataGridViewBase.SelectedRows)
                 {
                     GameDataSet.HashListRow dataRow = (GameDataSet.HashListRow)((DataRowView)row.DataBoundItem).Row;
-                    string systemNick = dataRow.ItemNickName;
-                    charFile.DeleteSetting("Player", "base");
-                    charFile.AddSetting("Player", "pos", new object[] { textBoxPosX.Text, textBoxPosY.Text, textBoxPosZ.Text });
-                    charFile.AddSetting("Player", "rotation", new object[] { 0, 0, 0 });
+                    string baseNick = dataRow.ItemNickName;
+                    string systemNick = baseNick.Substring(0, 4);
+
+                    charFile.AddSetting("Player", "base", new object[] { baseNick });
+                    charFile.AddSetting("Player", "last_base", new object[] { baseNick });
                     charFile.AddSetting("Player", "system", new object[] { systemNick });
                     break;
                 }
-            }
-            else
-            {
-                charFile.DeleteSetting("Player", "pos");
-                charFile.DeleteSetting("Player", "rotation");
-            }
 
-            appServices.SaveCharFile(charFile);
+                if (checkBox2.Checked)
+                {
+                    foreach (DataGridViewRow row in dataGridViewSystem.SelectedRows)
+                    {
+                        GameDataSet.HashListRow dataRow = (GameDataSet.HashListRow)((DataRowView)row.DataBoundItem).Row;
+                        string systemNick = dataRow.ItemNickName;
+                        charFile.DeleteSetting("Player", "base");
+                        charFile.AddSetting("Player", "pos", new object[] { textBoxPosX.Text, textBoxPosY.Text, textBoxPosZ.Text });
+                        charFile.AddSetting("Player", "rotation", new object[] { 0, 0, 0 });
+                        charFile.AddSetting("Player", "system", new object[] { systemNick });
+                        break;
+                    }
+                }
+                else
+                {
+                    charFile.DeleteSetting("Player", "pos");
+                    charFile.DeleteSetting("Player", "rotation");
+                }
+
+                appServices.SaveCharFile(charFile);
+            }
             this.Close();
         }
 

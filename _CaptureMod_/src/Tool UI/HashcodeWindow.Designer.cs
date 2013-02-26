@@ -40,12 +40,13 @@
             this.iDSInfo2DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.iDSInfo3DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.hashListBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gameDataSet = new DAM.GameDataSet();
             this.closeButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.richTextBoxInfo = new System.Windows.Forms.RichTextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.gameDataSet = new DAM.GameDataSet();
+            this.buttonExport = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.hashListBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gameDataSet)).BeginInit();
@@ -150,6 +151,11 @@
             this.hashListBindingSource.DataMember = "HashList";
             this.hashListBindingSource.DataSource = this.gameDataSet;
             // 
+            // gameDataSet
+            // 
+            this.gameDataSet.DataSetName = "GameDataSet";
+            this.gameDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // closeButton
             // 
             this.closeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -194,16 +200,22 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // gameDataSet
+            // buttonExport
             // 
-            this.gameDataSet.DataSetName = "GameDataSet";
-            this.gameDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.buttonExport.Location = new System.Drawing.Point(302, 514);
+            this.buttonExport.Name = "buttonExport";
+            this.buttonExport.Size = new System.Drawing.Size(75, 23);
+            this.buttonExport.TabIndex = 5;
+            this.buttonExport.Text = "Export Visible";
+            this.buttonExport.UseVisualStyleBackColor = true;
+            this.buttonExport.Click += new System.EventHandler(this.buttonExport_Click);
             // 
             // HashWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(952, 546);
+            this.Controls.Add(this.buttonExport);
             this.Controls.Add(this.richTextBoxInfo);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
@@ -238,5 +250,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn iDSInfo2DataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn iDSInfo3DataGridViewTextBoxColumn;
         private GameDataSet gameDataSet;
+        private System.Windows.Forms.Button buttonExport;
     }
 }

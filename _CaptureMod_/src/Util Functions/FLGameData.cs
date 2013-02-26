@@ -355,7 +355,9 @@ namespace DAM
 
                             // Random stuff I don't know what to do with.
                             else if (sectionName == "shield")
-                            { } // ignore this section
+                            {
+                                AddGameData(DataStore.HashList, section, GAMEDATA_MISC, true);
+                            }
                             else if (sectionName == "lootcrate")
                             { } // ignore this section
                             else if (sectionName == "lod")
@@ -367,7 +369,9 @@ namespace DAM
                             else if (sectionName == "explosion")
                             { } // ignore this section
                             else if (sectionName == "cargopod")
-                            { } // ignore this section
+                            {
+                                AddGameData(DataStore.HashList, section, GAMEDATA_MISC, true);
+                            }
                             else if (sectionName == "tradelane")
                             { } // ignore this section
 
@@ -574,7 +578,7 @@ namespace DAM
                 uint idsInfo = section.GetSetting(parmName).UInt(0);
                 stInfo = GetIDString(idsInfo);
                 if (stInfo == null)
-                    throw new Exception("ids_info not found " + idsInfo);
+                    stInfo = GetIDString(66205);
                 stInfo = stInfo.Trim();
             }
             return stInfo;
@@ -609,6 +613,22 @@ namespace DAM
             string stIDSInfo3 = GetIDSParm(section, "ids_info3");
 
             string keys = hash.ToString() + " 0x" + hash.ToString("X");
+
+            /* if (gameDataType == GAMEDATA_TRACTORS)
+            {
+                using (StreamWriter file = new StreamWriter("C:\\file.txt", true))
+                {
+                    file.WriteLine();
+                    file.WriteLine(String.Format(";{0}", nickName));
+                    file.WriteLine(section.GetSetting("ids_name").UInt(0));
+                    file.WriteLine("NAME");
+                    file.WriteLine(stIDSName);
+                    file.WriteLine();
+                    file.WriteLine(section.GetSetting("ids_info").UInt(0));
+                    file.WriteLine("INFOCARD");
+                    file.WriteLine(stIDSInfo);
+                }
+            } */
 
             items.AddHashListRow(hash, nickName, gameDataType, stIDSName, stIDSInfo, stIDSInfo1, stIDSInfo2, stIDSInfo3, keys);
             return true;
@@ -1116,208 +1136,44 @@ namespace DAM
 
         private string HardpointClassToGameDataClass(string hpClass)
         {
-            if (hpClass == "hp_cargo_pod")
-                return GAMEDATA_MISC;
 
-            if (hpClass == "hp_countermeasure_dropper")
+            if (hpClass.Contains("cargo"))
+                return GAMEDATA_MISC;
+               
+            if (hpClass.Contains("countermeasure"))
                 return GAMEDATA_CM;
 
-            if (hpClass == "hp_turret")
+            if (hpClass.Contains("turret"))
                 return GAMEDATA_TURRETS;
 
-            if (hpClass == "hp_mine_dropper")
+            if (hpClass.Contains("mine"))
                 return GAMEDATA_MINES;
 
-            if (hpClass == "hp_torpedo")
+            if (hpClass.Contains("torpedo"))
                 return GAMEDATA_PROJECTILES;
 
-            if (hpClass == "hp_thruster")
+            if (hpClass.Contains("thruster"))
                 return GAMEDATA_THRUSTERS;
 
-            if (hpClass == "hp_freighter_shield_generator")
+            if (hpClass.Contains("shield"))
                 return GAMEDATA_SHIELDS;
 
-            if (hpClass == "hp_elite_shield_generator")
-                return GAMEDATA_SHIELDS;
-
-            if (hpClass == "hp_fighter_shield_generator")
-                return GAMEDATA_SHIELDS;
-
-            if (hpClass == "hp_shield_generator")
-                return GAMEDATA_SHIELDS;
-
-            if (hpClass == "hp_gun")
-                return GAMEDATA_GUNS;
-
-            if (hpClass == "hp_child")
+            if (hpClass.Contains("hp_child"))
                 return GAMEDATA_MISC;
 
-            if (hpClass == "hp_tractor_source")
+            if (hpClass.Contains("tractor"))
                 return GAMEDATA_MISC;
 
-            if (hpClass == "hp_bay_external")
+            if (hpClass.Contains("_bay_"))
                 return GAMEDATA_MISC;
 
-            if (hpClass == "hp_bay_surface")
-                return GAMEDATA_MISC;
-
-            if (hpClass == "hp_gun_special_1")
+	        if (hpClass.Contains("_gun"))
                 return GAMEDATA_GUNS;
 
-            if (hpClass == "hp_gun_special_2")
-                return GAMEDATA_GUNS;
+    		if (hpClass.Contains("power"))
+                return GAMEDATA_POWERGEN;
 
-            if (hpClass == "hp_gun_special_3")
-                return GAMEDATA_GUNS;
-
-            if (hpClass == "hp_gun_special_4")
-                return GAMEDATA_GUNS;
-
-            if (hpClass == "hp_gun_special_5")
-                return GAMEDATA_GUNS;
-
-            if (hpClass == "hp_gun_special_6")
-                return GAMEDATA_GUNS;
-
-            if (hpClass == "hp_gun_special_7")
-                return GAMEDATA_GUNS;
-
-            if (hpClass == "hp_gun_special_8")
-                return GAMEDATA_GUNS;
-
-            if (hpClass == "hp_gun_special_9")
-                return GAMEDATA_GUNS;
-
-            if (hpClass == "hp_gun_special_10")
-                return GAMEDATA_GUNS;
-
-            if (hpClass == "hp_turret_special_1")
-                return GAMEDATA_TURRETS;
-
-            if (hpClass == "hp_turret_special_2")
-                return GAMEDATA_TURRETS;
-
-            if (hpClass == "hp_turret_special_3")
-                return GAMEDATA_TURRETS;
-
-            if (hpClass == "hp_turret_special_4")
-                return GAMEDATA_TURRETS;
-
-            if (hpClass == "hp_turret_special_5")
-                return GAMEDATA_TURRETS;
-
-            if (hpClass == "hp_turret_special_6")
-                return GAMEDATA_TURRETS;
-
-            if (hpClass == "hp_turret_special_7")
-                return GAMEDATA_TURRETS;
-
-            if (hpClass == "hp_turret_special_8")
-                return GAMEDATA_TURRETS;
-
-            if (hpClass == "hp_turret_special_9")
-                return GAMEDATA_TURRETS;
-
-            if (hpClass == "hp_turret_special_10")
-                return GAMEDATA_TURRETS;
-
-            if (hpClass == "hp_torpedo_special_1")
-                return GAMEDATA_PROJECTILES;
-
-            if (hpClass == "hp_torpedo_special_2")
-                return GAMEDATA_PROJECTILES;
-
-            if (hpClass == "hp_fighter_shield_special_1")
-                return GAMEDATA_SHIELDS;
-
-            if (hpClass == "hp_fighter_shield_special_2")
-                return GAMEDATA_SHIELDS;
-
-            if (hpClass == "hp_fighter_shield_special_3")
-                return GAMEDATA_SHIELDS;
-
-            if (hpClass == "hp_fighter_shield_special_4")
-                return GAMEDATA_SHIELDS;
-
-            if (hpClass == "hp_fighter_shield_special_5")
-                return GAMEDATA_SHIELDS;
-
-            if (hpClass == "hp_fighter_shield_special_6")
-                return GAMEDATA_SHIELDS;
-
-            if (hpClass == "hp_fighter_shield_special_7")
-                return GAMEDATA_SHIELDS;
-
-            if (hpClass == "hp_fighter_shield_special_8")
-                return GAMEDATA_SHIELDS;
-
-            if (hpClass == "hp_fighter_shield_special_9")
-                return GAMEDATA_SHIELDS;
-
-            if (hpClass == "hp_fighter_shield_special_10")
-                return GAMEDATA_SHIELDS;
-
-            if (hpClass == "hp_elite_shield_special_1")
-                return GAMEDATA_SHIELDS;
-
-            if (hpClass == "hp_elite_shield_special_2")
-                return GAMEDATA_SHIELDS;
-
-            if (hpClass == "hp_elite_shield_special_3")
-                return GAMEDATA_SHIELDS;
-
-            if (hpClass == "hp_elite_shield_special_4")
-                return GAMEDATA_SHIELDS;
-
-            if (hpClass == "hp_elite_shield_special_5")
-                return GAMEDATA_SHIELDS;
-
-            if (hpClass == "hp_elite_shield_special_6")
-                return GAMEDATA_SHIELDS;
-
-            if (hpClass == "hp_elite_shield_special_7")
-                return GAMEDATA_SHIELDS;
-
-            if (hpClass == "hp_elite_shield_special_8")
-                return GAMEDATA_SHIELDS;
-
-            if (hpClass == "hp_elite_shield_special_9")
-                return GAMEDATA_SHIELDS;
-
-            if (hpClass == "hp_elite_shield_special_10")
-                return GAMEDATA_SHIELDS;
-
-            if (hpClass == "hp_freighter_shield_special_1")
-                return GAMEDATA_SHIELDS;
-
-            if (hpClass == "hp_freighter_shield_special_2")
-                return GAMEDATA_SHIELDS;
-
-            if (hpClass == "hp_freighter_shield_special_3")
-                return GAMEDATA_SHIELDS;
-
-            if (hpClass == "hp_freighter_shield_special_4")
-                return GAMEDATA_SHIELDS;
-
-            if (hpClass == "hp_freighter_shield_special_5")
-                return GAMEDATA_SHIELDS;
-
-            if (hpClass == "hp_freighter_shield_special_6")
-                return GAMEDATA_SHIELDS;
-
-            if (hpClass == "hp_freighter_shield_special_7")
-                return GAMEDATA_SHIELDS;
-
-            if (hpClass == "hp_freighter_shield_special_8")
-                return GAMEDATA_SHIELDS;
-
-            if (hpClass == "hp_freighter_shield_special_9")
-                return GAMEDATA_SHIELDS;
-
-            if (hpClass == "hp_freighter_shield_special_10")
-                return GAMEDATA_SHIELDS;
-
-            throw new Exception("unknown hardpoint class " + hpClass);
+			 throw new Exception("unknown hardpoint class " + hpClass);
         }
 
         public GameDataSet.ShipInfoListRow GetShipInfo(uint hash)

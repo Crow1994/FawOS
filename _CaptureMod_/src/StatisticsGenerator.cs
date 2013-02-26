@@ -445,7 +445,7 @@ namespace DAM
             string[] colNames = new string[] { "Name", "LastOnLine", "OnLineTime" };
 
             // Prepare the filepath to save the HTML.
-            string escapedFactionName = Regex.Replace(charNameFilter, @"[?:\/*""<>|]", "");
+            string escapedFactionName = Regex.Replace(charNameFilter, @"[?:\\/*""<>|]", "");
             string filePath = String.Format("{0}\\activity_{1}.html", AppSettings.Default.setStatisticsDir, escapedFactionName);
             if (date > DateTime.MinValue)
                 filePath = String.Format("{0}\\activity_{1:yyyyMMdd}.html", AppSettings.Default.setStatisticsDir, date);

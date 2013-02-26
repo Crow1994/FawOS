@@ -124,6 +124,12 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>AppSettings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Tool UI\FormBulkRestore.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tool UI\FormBulkRestore.Designer.cs">
+      <DependentUpon>FormBulkRestore.cs</DependentUpon>
+    </Compile>
     <Compile Include="Tool UI\SearchForLoginIDWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -228,6 +234,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CreateBanWindow.resx">
       <DependentUpon>CreateBanWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tool UI\FormBulkRestore.resx">
+      <DependentUpon>FormBulkRestore.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Tool UI\SearchForLoginIDWindow.resx">
       <DependentUpon>SearchForLoginIDWindow.cs</DependentUpon>

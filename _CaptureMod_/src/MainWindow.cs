@@ -385,7 +385,7 @@ namespace DAM
             rescanAccountFilesToolStripMenuItem.Enabled = true;
             bgWkr = null;
 
-            SelectionInfo selection = SaveSelection();
+            SelectionInfo[] selection = SaveSelection();
 
             DamDataSet dds = (DamDataSet)e.Result;
             dataSetPlayerInfo.BanList.Clear();
@@ -516,7 +516,7 @@ namespace DAM
             piKills.Text = "";
             piCreated.Text = "";
 
-            piIPAddresses.Text = "";
+            lvCharLogins.Items.Clear();
 
             piAffiliation.Text = "";
 
@@ -646,14 +646,21 @@ namespace DAM
 
                 using (DamDataSet ds = new DamDataSet())
                 {
-                    DateTime startTime = DateTime.Now;
                     GetDataAccess().GetIPListByAccDir(ds.IPList, charRecord.AccDir);
                     foreach (DamDataSet.IPListRow row in ds.IPList)
-                        piIPAddresses.Text += String.Format("IP: {0}: {1}\r\n", row.AccessTime, row.IP);
+                    {
+                        var item = lvCharLogins.Items.Add("IP");
+                        item.SubItems.Add(row.AccessTime.ToString("dd MMM yyyy HH:mm"));
+                        item.SubItems.Add(row.IP);
+                    }
 
                     GetDataAccess().GetLoginIDListByAccDir(ds.LoginIDList, charRecord.AccDir);
                     foreach (DamDataSet.LoginIDListRow row in ds.LoginIDList)
-                        piIPAddresses.Text += String.Format("LoginID: {0}: {1}\r\n", row.AccessTime, row.LoginID);
+                    {
+                        var item = lvCharLogins.Items.Add("Hash");
+                        item.SubItems.Add(row.AccessTime.ToString("dd MMM yyyy HH:mm"));
+                        item.SubItems.Add(row.LoginID);
+                    }
                 }
                 
                 // Load the char file if it exists.
@@ -998,7 +1005,9 @@ namespace DAM
             else
             {
                 string charPath = AppSettings.Default.setAccountDir + "\\" + charRecord.CharPath;
-                new ChangeLocationWindow(this, gameData, loadedCharFile).ShowDialog(this);
+                List<FLDataFile> charFiles = new List<FLDataFile>();
+                charFiles.Add(loadedCharFile);
+                new ChangeLocationWindow(this, gameData, charFiles).ShowDialog(this);
             }
         }
 
@@ -1552,20 +1561,8 @@ namespace DAM
                         if (flHookCmdr.CmdIsOnServer(accCharRecord.CharName))
                             flHookCmdr.CmdKick(accCharRecord.CharName);
                     }
-
-                    foreach (DamDataSet.CharacterListRow accCharRecord in charRecords)
-                    {
-                        if (!flHookCmdr.CmdBan(accCharRecord.CharName))
-                            MessageBox.Show(this, "Warning flhook command failed \"" + flHookCmdr.LastCmdError + "\". Creating ban file in account anyway.", null, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        break;
-                    }
                 }
-
-                flHookCmdr.CmdBan(charName);
-
                 charFile.SaveSettings(charFile.filePath, AppSettings.Default.setWriteEncryptedFiles);
-
-                flHookCmdr.CmdUnban(charName);
             }
             catch (Exception ex)
             {
@@ -1656,7 +1653,7 @@ namespace DAM
             StringBuilder tmp = new StringBuilder(500);
             DateTime startTime = DateTime.Now;
             Cursor.Current = Cursors.WaitCursor;
-            SelectionInfo selection = SaveSelection();
+            SelectionInfo[] selection = SaveSelection();
 
             if (!checkBoxFilterDeleted.Checked)
             {
@@ -1778,12 +1775,15 @@ namespace DAM
 
 
             // put all the parts together
-            for (int i = 0; i < parts.Count - 1; i++)
+            if (parts.Count > 0)
             {
-                tmp.Append(parts[i]);
-                tmp.Append(" AND ");
+                for (int i = 0; i < parts.Count - 1; i++)
+                {
+                    tmp.Append(parts[i]);
+                    tmp.Append(" AND ");
+                }
+                tmp.Append(parts[parts.Count - 1]);
             }
-            tmp.Append(parts[parts.Count - 1]);
 
             characterListBindingSource.Filter = tmp.ToString();
 
@@ -2201,7 +2201,7 @@ namespace DAM
                 ReportProgress(0, "OK");
                 charListDataGridView.SelectionChanged -= charListDataGridView_SelectionChanged;
 
-                SelectionInfo selection = SaveSelection();
+                SelectionInfo[] selection = SaveSelection();
                 // change the data in the list
                 dataSetPlayerInfo.AcceptChanges();
                 RestoreSelection(selection);
@@ -2294,7 +2294,7 @@ namespace DAM
                         MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
                         FLUtility.CheckCharFile(dataSetPlayerInfo, this, gameData, loadedCharFile, false, true);
-                        SaveCharFile(loadedCharFile);
+                        updatePlayerInfoTimer.Start();
                     }
                 }
             }
@@ -2339,7 +2339,7 @@ namespace DAM
             FilterUpdate(null, EventArgs.Empty);
 
             // select the first char so the user can see more informations on the right
-            if (charListDataGridView.Rows.Count != 0)
+            if (charListDataGridView.Rows.Count != 0 && charListDataGridView.SelectedRows.Count == 0)
                 charListDataGridView.Rows[0].Selected = true;
         }
 
@@ -2597,6 +2597,7 @@ namespace DAM
             unbanThread.Start();
         }
 
+        #region Selection and scroll saving
         /// <summary>
         /// Struct to store selections and the scroll position in the main-window and load them later
         /// Needed because the selection is reset on updates
@@ -2604,30 +2605,55 @@ namespace DAM
         /// </summary>
         private struct SelectionInfo
         {
-            public string[] selectedCharPaths;
+            public string[] selectedChars;
 
             public int scrollPos;
-            public string scrollCharPath;
+            public string scrollChar;
         }
 
         /// <summary>
         /// Saves the selected rows and the scroll position
         /// </summary>
         /// <returns>a SelectionInfo that contains the data (used by RestoreSelection-Method)</returns>
-        private SelectionInfo SaveSelection()
+        private SelectionInfo[] SaveSelection()
         {
-            SelectionInfo info = new SelectionInfo();
+            List<SelectionInfo> info = new List<SelectionInfo>(2);
+            info.Add(SaveMainListSelection());
+            if (windowBannedPlayers != null && !windowBannedPlayers.IsDisposed)
+                info.Add(SaveBanListSelection());
+            return info.ToArray();
+        }
 
-            // save the scroll position
-            info.scrollPos = charListDataGridView.FirstDisplayedScrollingRowIndex;
-            if (info.scrollPos != -1)
-            {
-                string charFilePath = (string)charListDataGridView.Rows[info.scrollPos].Cells[charPathDataGridViewTextBoxColumn1.Index].Value;
-                info.scrollCharPath = charFilePath;
-            }
+        private SelectionInfo SaveMainListSelection()
+        {
+            SelectionInfo info = SaveScrollPos(charListDataGridView, charPathDataGridViewTextBoxColumn1.Index);
+            // save all selected rows
+            info.selectedChars = GetAllCharPathsBySelectedRows();
+            return info;
+        }
+
+        private SelectionInfo SaveBanListSelection()
+        {
+            SelectionInfo info = SaveScrollPos(windowBannedPlayers.dataGridView1, windowBannedPlayers.dataGridView1.Columns["accDirDataGridViewTextBoxColumn"].Index);
 
             // save all selected rows
-            info.selectedCharPaths = GetAllCharPathsBySelectedRows();
+            if (windowBannedPlayers.dataGridView1.SelectedRows.Count == 0)
+                info.selectedChars = new string[0];
+            else
+                info.selectedChars = new string[] { (string)windowBannedPlayers.dataGridView1.SelectedRows[0].Cells[0].Value };
+            return info;
+        }
+
+        private SelectionInfo SaveScrollPos(DataGridView datagrid, int collumn)
+        {
+            SelectionInfo info = new SelectionInfo();
+            // save the scroll position
+            info.scrollPos = datagrid.FirstDisplayedScrollingRowIndex;
+            if (info.scrollPos != -1)
+            {
+                string charFilePath = (string)datagrid.Rows[info.scrollPos].Cells[collumn].Value;
+                info.scrollChar = charFilePath;
+            }
             return info;
         }
 
@@ -2635,25 +2661,34 @@ namespace DAM
         /// Restores the selected rows and the scroll position saved by SaveSelection-Method
         /// </summary>
         /// <param name="info">the info to restore</param>
-        private void RestoreSelection(SelectionInfo info)
+        private void RestoreSelection(SelectionInfo[] info)
         {
+            if (info == null || (info.Length != 1 && info.Length != 2))
+                throw new ArgumentException("Invalid argument", "info");
+
+            RestoreMainListSelection(info[0]);
+            if (info.Length == 2 && windowBannedPlayers != null && windowBannedPlayers.IsDisposed)
+            {
+                RestoreBanListSelection(info[1]);
+            }
+        }
+
+        private void RestoreMainListSelection(SelectionInfo info)
+        {
+            charListDataGridView.ClearSelection();
             // Now find the previously selected characters and reselect them if possible.
             foreach (DataGridViewRow row in charListDataGridView.Rows)
             {
                 DamDataSet.CharacterListRow charRecord = (DamDataSet.CharacterListRow)((DataRowView)row.DataBoundItem).Row;
-                for (int i = 0; i < info.selectedCharPaths.Length; i++)
+                for (int i = 0; i < info.selectedChars.Length; i++)
                 {
-                    if (charRecord.CharPath == info.selectedCharPaths[i])
+                    if (charRecord.CharPath == info.selectedChars[i])
                     {
                         row.Selected = true;
                         break;
                     }
-                    else
-                    {
-                        row.Selected = false;
-                    }
                 }
-                if (info.scrollCharPath != null && charRecord.CharPath == info.scrollCharPath)
+                if (info.scrollChar != null && charRecord.CharPath == info.scrollChar)
                 {
                     charListDataGridView.FirstDisplayedScrollingRowIndex = row.Index;
                     info.scrollPos = -1;
@@ -2662,6 +2697,57 @@ namespace DAM
             // restore the scroll-position
             if (info.scrollPos != -1 && info.scrollPos < charListDataGridView.RowCount)
                 charListDataGridView.FirstDisplayedScrollingRowIndex = info.scrollPos;
+        }
+
+        private void RestoreBanListSelection(SelectionInfo info)
+        {
+            if(info.selectedChars.Length == 1)
+            {
+                charListDataGridView.ClearSelection();
+                string charToFind = info.selectedChars[0];
+                // Now find the previously selected characters and reselect them if possible.
+                foreach (DataGridViewRow row in windowBannedPlayers.dataGridView1.Rows)
+                {
+                    DamDataSet.BanListRow charRecord = (DamDataSet.BanListRow)((DataRowView)row.DataBoundItem).Row;
+                    if (charRecord.AccDir == charToFind)
+                    {
+                        row.Selected = true;
+                        break;
+                    }
+                    if (info.scrollChar != null && charRecord.AccDir == info.scrollChar)
+                    {
+                        charListDataGridView.FirstDisplayedScrollingRowIndex = row.Index;
+                        info.scrollPos = -1;
+                    }
+                }
+            }
+            // restore the scroll-position
+            if (info.scrollPos != -1 && info.scrollPos < charListDataGridView.RowCount)
+                charListDataGridView.FirstDisplayedScrollingRowIndex = info.scrollPos;
+        }
+        #endregion
+
+        private void buttonMoveAllSelected_Click(object sender, EventArgs e)
+        {
+            DamDataSet.CharacterListRow[] charRecords = GetAllCharRecordsBySelectedRows();
+
+            if (MessageBox.Show(this, "Are you sure you want to move " + charRecords.Length + " players?", "Move Players?", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) != DialogResult.Yes)
+                return;
+
+            List<FLDataFile> charFiles = new List<FLDataFile>();
+            for (int i = 0; i < charRecords.Length; i++)
+            {
+                string charPath = AppSettings.Default.setAccountDir + "\\" + charRecords[i].CharPath;
+                charFiles.Add(new FLDataFile(charPath, true));
+            }
+            new ChangeLocationWindow(this, gameData, charFiles).ShowDialog(this);
+        }
+
+        private void lvCharLogins_KeyUp(object sender, KeyEventArgs e)
+        {
+            if(lvCharLogins.SelectedItems.Count == 1 && e.Control && e.KeyCode == Keys.C)
+                Clipboard.SetText(lvCharLogins.SelectedItems[0].SubItems[1].Text + ", " +
+                                  lvCharLogins.SelectedItems[0].SubItems[2].Text);
         }
     }
 }

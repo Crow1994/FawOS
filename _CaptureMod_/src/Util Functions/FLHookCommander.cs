@@ -212,7 +212,7 @@ namespace DAM
             return ExecuteCommand("test");
         }
 
-		/// <summary>
+        /// <summary>
         /// Request that FLServer read the character. This operation blocks until
         /// complete and may take several seconds to do.
         /// </summary>
