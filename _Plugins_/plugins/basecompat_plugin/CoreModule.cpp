@@ -87,7 +87,7 @@ void CoreModule::Spawn()
 		si.iFlag = 4;
 
 		char archname[100];
-		_snprintf(archname, sizeof(archname), "dsy_playerbase_%02u", base->base_level);
+		_snprintf(archname, sizeof(archname), "space_factory%02u", base->base_level);
 		si.iArchID = CreateID(archname);
 		si.iLoadoutID = CreateID(archname);
 

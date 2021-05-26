@@ -1950,8 +1950,8 @@ namespace DAM
                         fLHookSocket.CmdSaveChar(iWannaKnow);
                         string text5 = fLHookSocket.CmdReadCharFile(iWannaKnow);
                         
-                        if (text5 != "ERROR" && text5 != "OK" && values[1].ToLower() != pBaseExcl && values[1].ToLower() != "rh01_05_base" && values[1].ToLower() != "li01_10_base" && values[1].ToLower() != "br01_02_base" && values[1].ToLower() != "ku06_01_base" && values[1].ToLower() != "br04_04_base" && values[1].ToLower() != "br02_03_base" && values[1].ToLower() != "br01_03_base" && values[1].ToLower() != "br01_01_base" && values[1].ToLower() != "rh04_05_base" && values[1].ToLower() != "hi02_01_base" && values[1].ToLower() != "bw06_02_base" && values[1].ToLower() != "rh01_03_base" && values[1].ToLower() != "li01_02_base" && values[1].ToLower() != "ku03_05_base" && values[1].ToLower() != "br06_03_base" && values[1].ToLower() != "bw05_01_base" && values[1].ToLower() != "br01_07_base" && values[1].ToLower() != "ku05_02_base" && values[1].ToLower() != "ku01_07_base" && values[1].ToLower() != "ew01_02_base" && values[1].ToLower() != "li01_08_base" && values[1].ToLower() != "bw05_03_base" && values[1].ToLower() != "ku01_05_base" && values[1].ToLower() != "rh01_06_base" && values[1].ToLower() != "ku05_01_base" && values[1].ToLower() != "ku01_01_base" && values[1].ToLower() != "rh03_06_base" && values[1].ToLower() != "iw03_02_base" && values[1].ToLower() != "li01_03_base" && values[1].ToLower() != "li01_01_base" && values[1].ToLower() != "li01_12_base" && values[1].ToLower() != "br05_05_base" && values[1].ToLower() != "bw07_01_base" && values[1].ToLower() != "hi01_01_base" && values[1].ToLower() != "br01_05_base" && values[1].ToLower() != "bw04_02_base" && values[1].ToLower() != "rh02_04_base" && values[1].ToLower() != "rh01_02_base" && values[1].ToLower() != "rh01_01_base" && values[1].ToLower() != "ku01_03_base" && values[1].ToLower() != "st01_01_base" && values[1].ToLower() != "iw01_01_base" && values[1].ToLower() != "li01_06_base" && values[1].ToLower() != "li03_03_base" && values[1].ToLower() != "ew01_01_base" && values[1].ToLower() != "st02_01_base")
-                        //if (text5 != "ERROR" && text5 != "OK" && values[1].ToLower() != pBaseExcl && values[1].ToLower() != "st04_03_base" && values[1].ToLower() != "iw09_03_base")
+                        //if (text5 != "ERROR" && text5 != "OK" && values[1].ToLower() != pBaseExcl && values[1].ToLower() != "rh01_05_base" && values[1].ToLower() != "li01_10_base" && values[1].ToLower() != "br01_02_base" && values[1].ToLower() != "ku06_01_base" && values[1].ToLower() != "br04_04_base" && values[1].ToLower() != "br02_03_base" && values[1].ToLower() != "br01_03_base" && values[1].ToLower() != "br01_01_base" && values[1].ToLower() != "rh04_05_base" && values[1].ToLower() != "hi02_01_base" && values[1].ToLower() != "bw06_02_base" && values[1].ToLower() != "rh01_03_base" && values[1].ToLower() != "li01_02_base" && values[1].ToLower() != "ku03_05_base" && values[1].ToLower() != "br06_03_base" && values[1].ToLower() != "bw05_01_base" && values[1].ToLower() != "br01_07_base" && values[1].ToLower() != "ku05_02_base" && values[1].ToLower() != "ku01_07_base" && values[1].ToLower() != "ew01_02_base" && values[1].ToLower() != "li01_08_base" && values[1].ToLower() != "bw05_03_base" && values[1].ToLower() != "ku01_05_base" && values[1].ToLower() != "rh01_06_base" && values[1].ToLower() != "ku05_01_base" && values[1].ToLower() != "ku01_01_base" && values[1].ToLower() != "rh03_06_base" && values[1].ToLower() != "iw03_02_base" && values[1].ToLower() != "li01_03_base" && values[1].ToLower() != "li01_01_base" && values[1].ToLower() != "li01_12_base" && values[1].ToLower() != "br05_05_base" && values[1].ToLower() != "bw07_01_base" && values[1].ToLower() != "hi01_01_base" && values[1].ToLower() != "br01_05_base" && values[1].ToLower() != "bw04_02_base" && values[1].ToLower() != "rh02_04_base" && values[1].ToLower() != "rh01_02_base" && values[1].ToLower() != "rh01_01_base" && values[1].ToLower() != "ku01_03_base" && values[1].ToLower() != "st01_01_base" && values[1].ToLower() != "iw01_01_base" && values[1].ToLower() != "li01_06_base" && values[1].ToLower() != "li03_03_base" && values[1].ToLower() != "ew01_01_base" && values[1].ToLower() != "st02_01_base")
+                        if (text5 != "ERROR" && text5 != "OK" && values[1].ToLower() != pBaseExcl && values[1].ToLower() != "st04_03_base" && values[1].ToLower() != "iw09_03_base")
                         {
                             int num2 = num + 1;
                             //string soWhatWeHaveHere2 = "md .." + "\\data\\universe\\systems\\" + array2[0] + "\\" + array2[0] + ".ini " + array2[0] + "_" + array2[1] + " reputation " + text5;
@@ -1959,12 +1959,29 @@ namespace DAM
                             
                             //Let's Change client side
                             string soWhatWeHaveHere = "rd .." + "\\data\\universe\\systems\\" + array2[0] + "\\" + array2[0] + ".ini " + array2[0] + "_" + array2[1] + " reputation " + text5;
-                            fLHookSocket.CmdMsgU(soWhatWeHaveHere);
-                            fLHookSocket.CmdMsgU("rd ..\\data\\missions\\mbases.ini " + values[1] + " local_faction " + text5);
+                            //fLHookSocket.CmdMsgU(soWhatWeHaveHere);
+                            //fLHookSocket.CmdMsgU("rd ..\\data\\missions\\mbases.ini " + values[1] + " local_faction " + text5);
+                            fLHookSocket.CmdMsgU("SomeWhere an Object is Captured !!");
 
+                            if (array2[1] == "01")
+                            {
+                                fLHookSocket.CmdMsgU("Control Point is captured! Whole systems will be yours after ION Storm.");
+                                FLGameData.ReplaceInFile(filePath, "reputation = (.[^\n]*)", "reputation =" + text5);
+                                FLGameData.ReplaceInFile(filePath, "encounter = patrolp_(.[^,]*),(.[^,]*),(.[^,]*)(.[^\n]*)faction =(.[^,]*),", "encounter = patrolp_$1,$2,$3$4faction =" + text5 + ",");
+                                FLGameData.ReplaceInFile(filePath, "encounter = area_(.[^,]*),(.[^,]*),(.[^,]*)(.[^\n]*)faction =(.[^,]*),", "encounter = area_$1,$2,$3$4faction =" + text5 + ",");
+                                FLGameData.ReplaceInFile(filePath, "encounter = tradep_(.[^,]*),(.[^,]*),(.[^,]*)(.[^\n]*)faction =(.[^,]*),", "encounter = tradep_$1,$2,$3$4faction =" + text5 + ",");
+                                FLGameData.ReplaceInFile(filePath, "encounter = miningp_(.[^,]*),(.[^,]*),(.[^,]*)(.[^\n]*)faction =(.[^,]*),", "encounter = miningp_$1,$2,$3$4faction =" + text5 + ",");
+                                FLGameData.ReplaceInFile(filePath, "encounter = capitalships_(.[^,]*),(.[^,]*),(.[^,]*)(.[^\n]*)faction =(.[^,]*),", "encounter = capitalships_$1,$2,$3$4faction =" + text5 + ",");
+                                FLGameData.ReplaceInFile(filePath, "encounter = cruisers_(.[^,]*),(.[^,]*),(.[^,]*)(.[^\n]*)faction =(.[^,]*),", "encounter = cruisers_$1,$2,$3$4faction =" + text5 + ",");
+                                FLGameData.ReplaceInFile(filePath, "encounter = gunboats_(.[^,]*),(.[^,]*),(.[^,]*)(.[^\n]*)faction =(.[^,]*),", "encounter = gunboats_$1,$2,$3$4faction =" + text5 + ",");
+                                FLGameData.ReplaceInFile(filePath, "encounter = tradelane_(.[^,]*),(.[^,]*),(.[^,]*)(.[^\n]*)faction =(.[^,]*),", "encounter = tradelane_$1,$2,$3$4faction =" + text5 + ",");
+                                FLGameData.ReplaceInFile(filePath, "encounter = lone_(.[^,]*),(.[^,]*),(.[^,]*)(.[^\n]*)faction =(.[^,]*),", "encounter = lone_$1,$2,$3$4faction =" + text5 + ",");
+                            }
+
+                            FLGameData.ReplaceInFile(filePath, "archetype = ([^Trade\n].[^\n]*)", "archetype = jumphole_base");
                             FLGameData.ReplaceInFile(filePath, "nickname = " + values[1] + "(.[^[]*)reputation = (.[^\n]*)", "nickname = " + values[1] + "$1reputation =" + text5);
                             FLGameData.ReplaceInFile(filePath, "dock_with = " + values[1] + "(.[^[]*)reputation = (.[^\n]*)", "dock_with = " + values[1] + "$1reputation =" + text5);
-                            FLGameData.ReplaceInFile(filePath, "reputation = (.[^\\n]*)(.[^[]*)dock_with = " + values[1], "reputation =" + text5 + "$2dock_with = " + values[1]);
+                            FLGameData.ReplaceInFile(filePath, "reputation = (.[^\n]*)(.[^[]*)dock_with = " + values[1], "reputation =" + text5 + "$2dock_with = " + values[1]);
                             FLGameData.ReplaceInFile(filePath, "nickname = Zone_(.[^[]*)Planet_" + text4 + "(.[^[]*)encounter = capitalships_(.[^,]*),(.[^,]*),(.[^,]*)(.[^\n]*)faction =(.[^,]*),", string.Concat(new string[]
 													{
 														"nickname = Zone_$1Planet_", 
@@ -2073,20 +2090,7 @@ namespace DAM
                                 //fLHookSocket.CmdMsgU("SomeWhere an Object is Captured !!");
                                 //fLHookSocket.CmdMsgU("To disable this message install special patch");
                             }
-                            if (array2[1] == "01")
-                            {
-                                fLHookSocket.CmdMsgU("Control Point is captured! Whole systems will be yours after ION Storm.");
-                                FLGameData.ReplaceInFile(filePath, "reputation = (.[^\\n]*)", "reputation =" + text5);
-                                FLGameData.ReplaceInFile(filePath, "encounter = patrolp_(.[^,]*),(.[^,]*),(.[^,]*)(.[^\\n]*)faction =(.[^,]*),", "encounter = patrolp_$1,$2,$3$4faction =" + text5 + ",");
-                                FLGameData.ReplaceInFile(filePath, "encounter = area_(.[^,]*),(.[^,]*),(.[^,]*)(.[^\\n]*)faction =(.[^,]*),", "encounter = area_$1,$2,$3$4faction =" + text5 + ",");
-                                FLGameData.ReplaceInFile(filePath, "encounter = tradep_(.[^,]*),(.[^,]*),(.[^,]*)(.[^\\n]*)faction =(.[^,]*),", "encounter = tradep_$1,$2,$3$4faction =" + text5 + ",");
-                                FLGameData.ReplaceInFile(filePath, "encounter = miningp_(.[^,]*),(.[^,]*),(.[^,]*)(.[^\\n]*)faction =(.[^,]*),", "encounter = miningp_$1,$2,$3$4faction =" + text5 + ",");
-                                FLGameData.ReplaceInFile(filePath, "encounter = capitalships_(.[^,]*),(.[^,]*),(.[^,]*)(.[^\\n]*)faction =(.[^,]*),", "encounter = capitalships_$1,$2,$3$4faction =" + text5 + ",");
-                                FLGameData.ReplaceInFile(filePath, "encounter = cruisers_(.[^,]*),(.[^,]*),(.[^,]*)(.[^\\n]*)faction =(.[^,]*),", "encounter = cruisers_$1,$2,$3$4faction =" + text5 + ",");
-                                FLGameData.ReplaceInFile(filePath, "encounter = gunboats_(.[^,]*),(.[^,]*),(.[^,]*)(.[^\\n]*)faction =(.[^,]*),", "encounter = gunboats_$1,$2,$3$4faction =" + text5 + ",");
-                                FLGameData.ReplaceInFile(filePath, "encounter = tradelane_(.[^,]*),(.[^,]*),(.[^,]*)(.[^\\n]*)faction =(.[^,]*),", "encounter = tradelane_$1,$2,$3$4faction =" + text5 + ",");
-                                FLGameData.ReplaceInFile(filePath, "encounter = lone_(.[^,]*),(.[^,]*),(.[^,]*)(.[^\\n]*)faction =(.[^,]*),", "encounter = lone_$1,$2,$3$4faction =" + text5 + ",");
-                            }
+                            
                         }
                     }
                 }

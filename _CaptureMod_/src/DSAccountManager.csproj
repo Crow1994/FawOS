@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -13,8 +13,6 @@
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <TargetFrameworkSubset>
-    </TargetFrameworkSubset>
     <ApplicationIcon>103.ico</ApplicationIcon>
     <ManifestCertificateThumbprint>7C1AC005020FDC467FB06DE206F577282D2D1140</ManifestCertificateThumbprint>
     <ManifestKeyFile>Disco Account Manager_TemporaryKey.pfx</ManifestKeyFile>
@@ -39,6 +37,11 @@
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>false</DebugSymbols>
@@ -56,6 +59,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -73,7 +77,6 @@
   <ItemGroup>
     <Compile Include="GameDataSet.cs">
       <DependentUpon>GameDataSet.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="GameDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -162,7 +165,6 @@
     </Compile>
     <Compile Include="UIDataSet.cs">
       <DependentUpon>UIDataSet.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="UIDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -183,7 +185,6 @@
     <Compile Include="Util Functions\FLDataFile.cs" />
     <Compile Include="DamDataSet.cs">
       <DependentUpon>DamDataSet.xsd</DependentUpon>
-      <SubType>Component</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="DamDataSet.Designer.cs">
